@@ -331,7 +331,8 @@ def catchbook(requreip = 0, v=0,startbook=0):
 						a = time.clock()
 						time.sleep(v)
 						b = time.clock()
-						print('时间暂停:'+str(b-a))
+						print('时间暂停:'+str(v))
+						print('真实时间暂停（Unix CPU时间,Windows 真实时间):'+str(b-a))
 					# 不需要代理
 					if requreip==0:
 						webcontent = getHtml(url).encode('utf-8') # 爬取，有时间限制，应对504错误
@@ -415,8 +416,8 @@ def dealbook():
 	rootdir='book'
 	prefix='.html'
 	database = Mysql(host="localhost", user="root", pwd="6833066", db="doubanbook")
-	insertbooksql = "INSERT INTO `bookdetial` (`bookname`,`bookno`,`bookinfo`,`bookintro`,`authorintro`,`peoples`,`starts`,`other`,`mulu`,`comments`) VALUES (" \
-							"{0}, {1}, {2},{3},{4},{5},{6},{7},{8},{9})"
+	insertbooksql = "INSERT INTO `bookdetial` (`bookname`,`bookno`,`bookinfo`,`bookintro`,`authorintro`,`peoples`,`starts`,`other`,`mulu`,`comments`) VALUES ("\
+							"'{0}', '{1}', '{2}','{3}','{4}',{5},'{6}','{7}','{8}','{9}')"
 	for parent,dirnames,filenames in os.walk(rootdir):
 		for filename in filenames:
 			if filename.endswith(prefix) :
