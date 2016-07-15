@@ -5,7 +5,7 @@
 >please see the code source
 
 #BUG
->2016.7.15修复标签页首页豆瓣改版
+>2016.7.15修复标签页首页豆瓣改版,以及step8.py的数据库插入错误
 >及  Excel库函数API变化
 
 # 目录结构
@@ -174,5 +174,72 @@ import catch
 catch.dealbooklist()
 ```
 
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step5.jpg' />
+
+##step6.py根据图书列表页Excel，提取分类，写入数据库
+```
+python step6.py
+```
+
+step6.py代码：
+
+```
+# -*- coding:utf-8 -*-
+import catch
+# 合并各标签列表页excel到数据库
+catch.mergeboolist()
+```
+
+需更改catch.py的数据库配置
+
+```
+database = Mysql(host="localhost", user="root", pwd="6833066", db="doubanbook")
+```
+
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step61.jpg' />
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step6.jpg' />
+
+##step7.py根据图书列表页Excel，提取分类，写入数据库
+```
+python step7.py
+```
+
+step7.py代码：
+
+```
+# -*- coding:utf-8 -*-
+import catch
+# 抓取图书详情页
+'''
+# 读取book表，读取booktag表，抓取图书网页拷贝多份到不同标签目录
+def catchbook(requreip = 0, v=0,startbook=0):
+  """
+  输入参数为:
+  是否使用代理，默认否
+  是否限制爬虫速度，默认否，时间为1秒仿人工
+  startbook = 0 查询起始位置,如果处理过程失败，可以抽取数据库第startbook条数据之后进行爬取
+  """
+'''
+catch.catchbook(0,0,34800)#1900
+```
+
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step7.jpg' />
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step71.jpg' />
+
+
+##step8.py根据图书详情页，抽取数据写入数据库
+```
+python step8.py
+```
+
+step8.py代码：
+```
+# -*- coding:utf-8 -*-
+import catch
+# 处理提取图书详情页
+catch.dealbook()
+```
+
+<img src='https://raw.githubusercontent.com/hunterhug/doubanbook30000/master/img/step8.jpg' />
 
 author:hunterhug
