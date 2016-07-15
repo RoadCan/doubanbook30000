@@ -113,16 +113,22 @@ def booktag(url_content, path = 'web/booktag.xlsx'):
 	soup = BeautifulSoup(url_content, 'html.parser') # 开始解析
 	booktag1 = soup.select('div#content div.article div div')
 	# print(booktag1[0])
-	taglist = [['标签类别', '标签名', '链接']]
+	taglist = [['标签类别', '标签名', '链接','图书数']]
 	for booktag2 in booktag1:
+		print(str(booktag2))
 		soup1 = BeautifulSoup(str(booktag2), 'html.parser') # 开始解析
 		booktag2 = soup1.find('a',attrs={'class':'tag-title-wrapper'})
 		type = booktag2['name']  # 标签类别
-		booktag3 = soup1.findAll('a',attrs={'class':'tag'})
-		for i in booktag3:
-			tag = i.string # 标签名
-			taglink = i['href'] # 链接
-			taglist.append([type, tag, taglink])
+		# print(type)
+		# booktag3 = soup1.findAll('a',attrs={'class':'tag'})
+		booktag3 = soup1.findAll("a")
+		booktag4 = soup1.findAll("b")
+		# print(booktag3)
+		for i in range(0,len(booktag4)):
+			tag = booktag3[i+1].string # 标签名
+			taglink =  booktag3[i+1]['href'] # 链接
+			tagnum=booktag4[i].string
+			taglist.append([type, tag, taglink,tagnum])
 	print(taglist)
 	writeexcel(path, taglist)
 	print("写入EXCEL成功")

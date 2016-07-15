@@ -20,9 +20,9 @@ web504=['1010668','1023322','10459781','1915375']
 def catchbooklist(requreip = 0, v=0, lockprefix= 'lock'):
 	"""
 	输入参数为:
-	是否使用代理，默认否
-	是否限制爬虫速度，默认否，时间为1秒仿人工
-	文件加锁后缀
+	requireip 是否使用代理，默认否
+	v 是否限制爬虫速度，默认否，时间为1秒仿人工
+	lockprefix 文件加锁后缀
 	"""
 	# 进行计时
 	start = time.clock()
@@ -83,9 +83,11 @@ def catchbooklist(requreip = 0, v=0, lockprefix= 'lock'):
 							a = time.clock()
 							time.sleep(v)
 							b = time.clock()
-							print('时间暂停:'+str(b-a))
+							print('时间暂停:'+str(v))
+							print('真实时间暂停（Unix CPU时间,Windows 真实时间):'+str(b-a))
 						# 不需要代理
 						if requreip==0:
+							# webcontent = getHtml(site).encode('utf-8') # 爬取
 							webcontent = getHtml(site).encode('utf-8') # 爬取
 							# print(webcontent.decode('utf-8','ignore'))
 							notnull = re.search(r'<dl>',webcontent.decode('utf-8','ignore')) # 匹配看是否抓取到末页

@@ -104,14 +104,30 @@ CREATE TABLE `booktag` (
   `booktag` varchar(45) DEFAULT NULL COMMENT '书标签',
   `bookkind` varchar(45) DEFAULT NULL COMMENT '书分类',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='书标签';"""
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='书标签';
+
+CREATE TABLE `bookdetial` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bookname` varchar(100) NOT NULL COMMENT '书名',
+  `bookno` varchar(45) NOT NULL COMMENT '书编号',
+  `bookinfo` text COMMENT '书出版信息',
+  `bookintro` text COMMENT '书介绍',
+  `authorintro` text COMMENT '作者介绍',
+  `peoples` int(11) DEFAULT NULL COMMENT '评价人数',
+  `starts` varchar(100) DEFAULT NULL COMMENT '星级情况',
+  `other` text COMMENT '其他信息',
+  `mulu` mediumtext COMMENT '图书目录',
+  `comments` mediumtext COMMENT '评论人',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `bookno_UNIQUE` (`bookno`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='图书详情表';"""
 	try:
 		cur.execute(createsql)
 		mysql.commit()
 		return createsql
 	except:
 		mysql.rollback()
-		print("执行失败")
+		print("执行失败，请先删除已存在的数据库和数据库表")
 
 if __name__ == '__main__':
 	# testinsert()

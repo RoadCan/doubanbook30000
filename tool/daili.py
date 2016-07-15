@@ -5,7 +5,7 @@ import re
 # 183.239.167.122:8080
 def daili():
         geshi=re.compile(r'(.*)@(.*)')
-        file =open('daili.txt','rb')
+        file =open('tool/daili.txt','rb')
         data=file.read().decode('utf-8','ignore').split('\n')
         location=[]
         #random.shuffle(data) # ip数组打乱

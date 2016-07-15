@@ -28,7 +28,8 @@ def rlistfiles(rootdir, prefix='.html'):
 
 def writeexcel(path, content, sheetname='标签抓取表'):
 	wb=Workbook()
-	sheet=wb.create_sheet(0,sheetname)
+	# sheet=wb.create_sheet(0,sheetname)  #最新版API改为下面
+	sheet=wb.create_sheet(sheetname,0)
 	row = 1
 	col = 1
 	for i in content:
@@ -45,8 +46,10 @@ def readexcel(path):
 	wb2=load_workbook(path)
 	sheetnames = wb2.get_sheet_names()
 	ws=wb2.get_sheet_by_name(sheetnames[0])
-	row=ws.get_highest_row()
-	col=ws.get_highest_column()
+	# row=ws.get_highest_row()
+	row=ws.max_row
+	col=ws.max_column
+	# col=ws.get_highest_column()
 	# print("列数: ",ws.get_highest_column())
 	# print("行数: ",ws.get_highest_row())
 
